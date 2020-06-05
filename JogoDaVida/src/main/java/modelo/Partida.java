@@ -15,4 +15,5 @@ public class Partida {
     private Boolean partidaAtiva;
     private ArrayList<Integer> jogadores;
     private Integer jogadorTurnoAtual;
+    
 }
