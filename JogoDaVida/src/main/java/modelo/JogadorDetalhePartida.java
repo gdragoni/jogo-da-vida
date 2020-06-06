@@ -10,9 +10,12 @@ package modelo;
  * @author gdragoni
  */
 public class JogadorDetalhePartida {
+    private Integer id;
     private Integer idJogador;
-    private Integer currentFieldPosition;
-    private Double currentSalary;
-    private Double currentMoney;
-    private Double currentPromissory;
+    private Integer idPartida;
+    private Integer posicaoAtual;
+    private Double salarioAtual;
+    private Double dinheiroAtual;
+    private Double promissoriaAtual;
+    private Integer acaoNumeroAtual;
 }
