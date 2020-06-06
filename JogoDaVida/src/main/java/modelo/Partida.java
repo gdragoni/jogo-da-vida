@@ -12,8 +12,9 @@ import java.util.ArrayList;
  * @author gdragoni
  */
 public class Partida {
+    private Integer id;
     private Boolean partidaAtiva;
     private ArrayList<Integer> jogadores;
     private Integer jogadorTurnoAtual;
-    
+    private Integer jogadorVencedor;
 }
