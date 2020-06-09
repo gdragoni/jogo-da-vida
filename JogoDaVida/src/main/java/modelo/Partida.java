@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Partida {
     private Integer id;
-    private Boolean partidaAtiva;
+    private Boolean ativa;
     private ArrayList<Integer> jogadores;
     private Integer jogadorTurnoAtual;
     private Integer jogadorVencedor;

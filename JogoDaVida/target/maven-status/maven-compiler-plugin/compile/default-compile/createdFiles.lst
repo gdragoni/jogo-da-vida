@@ -1,4 +1,8 @@
-ws/Jogador.class
+modelo/Partida.class
 com/dragoni/jogodavida/resources/JavaEE8Resource.class
 modelo/DAO.class
 com/dragoni/jogodavida/JAXRSConfiguration.class
+modelo/JogadorDetalhePartida.class
+modelo/Jogador.class
+modelo/JogadorDAO.class
+ws/JogadorResources.class

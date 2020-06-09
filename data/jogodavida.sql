@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Tempo de geração: 06/06/2020 às 20:51
+-- Tempo de geração: 09/06/2020 às 21:26
 -- Versão do servidor: 8.0.20
 -- Versão do PHP: 7.4.6
 
@@ -20,6 +20,20 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `jogodavida`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `HistoricoPartida`
+--
+
+CREATE TABLE `HistoricoPartida` (
+  `id` int NOT NULL,
+  `id_partida` int NOT NULL,
+  `id_jogador` int NOT NULL,
+  `descricao` varchar(300) NOT NULL,
+  `data` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -68,6 +82,12 @@ CREATE TABLE `Partida` (
 --
 
 --
+-- Índices de tabela `HistoricoPartida`
+--
+ALTER TABLE `HistoricoPartida`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices de tabela `Jogador`
 --
 ALTER TABLE `Jogador`
@@ -92,6 +112,12 @@ ALTER TABLE `Partida`
 --
 -- AUTO_INCREMENT de tabelas apagadas
 --
+
+--
+-- AUTO_INCREMENT de tabela `HistoricoPartida`
+--
+ALTER TABLE `HistoricoPartida`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `Jogador`

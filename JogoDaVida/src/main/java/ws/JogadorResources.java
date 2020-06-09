@@ -5,6 +5,7 @@
  */
 package ws;
 
+import com.google.gson.Gson;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.ws.rs.core.Context;
@@ -18,6 +19,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
+import modelo.JogadorDAO;
 
 /**
  * REST Web Service
@@ -29,13 +31,17 @@ public class JogadorResources {
 
     @Context
     private UriInfo context;
+    private Gson gson;
+    private JogadorDAO dao;
     
-    public JogadorResources()  {
-        
+    public JogadorResources() throws SQLException, ClassNotFoundException  {
+        this.gson = new Gson();
+        this.dao = new JogadorDAO();
     }
     
     @GET
-    public String teste() {
-        return "TESTADO";
+    public String teste() throws SQLException {
+        
+        return gson.toJson(dao.selectJogadores());
     }
 }

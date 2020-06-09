@@ -20,6 +20,6 @@ public class DAO {
     
     public DAO() throws ClassNotFoundException, SQLException{
         Class.forName("com.mysql.cj.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://db:3306/jogodavida?useTimezone=true&serverTimezone=GMT&useSSL=false", "root", "password");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jogodavida?useTimezone=true&serverTimezone=GMT&useSSL=false", "root", "password");
     }
 }
