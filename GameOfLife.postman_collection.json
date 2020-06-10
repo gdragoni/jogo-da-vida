@@ -1,0 +1,62 @@
+{
+	"info": {
+		"_postman_id": "4367b744-a0e9-49e0-9ae2-16d5ace58884",
+		"name": "GameOfLife",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Jogador",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\": \"Leo Leite\",\n\t\"senha\": \"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/JogoDaVida/resources/jogador/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"JogoDaVida",
+								"resources",
+								"jogador",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Partida",
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "JogadorPartida",
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "HistoricoPartida",
+			"item": [],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
