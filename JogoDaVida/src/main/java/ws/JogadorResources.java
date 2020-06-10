@@ -42,6 +42,6 @@ public class JogadorResources {
     @GET
     public String teste() throws SQLException {
         
-        return gson.toJson(dao.selectJogadores());
+        return gson.toJson(dao.selectJogadorComNomeSenha("Gabriel Dragoni", "123"));
     }
 }

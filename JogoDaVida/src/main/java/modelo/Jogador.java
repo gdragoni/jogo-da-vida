@@ -15,13 +15,12 @@ public class Jogador {
     private Integer id;
     private String nome;
     private String senha;
-    private ArrayList<Integer> partidasAtivas;
+    private ArrayList<Partida> partidasAtivas;
 
-    public Jogador(Integer id, String nome, String senha, ArrayList<Integer> partidasAtivas) {
+    public Jogador(Integer id, String nome, String senha) {
         this.id = id;
         this.nome = nome;
         this.senha = senha;
-        this.partidasAtivas = partidasAtivas;
     }
     
     /**
@@ -48,7 +47,11 @@ public class Jogador {
     /**
      * @return the partidasAtivas
      */
-    public ArrayList<Integer> getPartidasAtivas() {
+    public ArrayList<Partida> getPartidasAtivas() {
         return partidasAtivas;
+    }
+
+    public void setPartidasAtivas(ArrayList<Partida> partidasAtivas) {
+        this.partidasAtivas = partidasAtivas;
     }
 }
