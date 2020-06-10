@@ -21,7 +21,8 @@ public class PartidaDAO extends DAO {
     }
     
     public ArrayList<Partida> selectPartidasAtivaPorJogador(Integer jogador) throws SQLException {
-        String sql = "SELECT * FROM Partida WHERE id_jogador="+jogador;
+        String sql = "SELECT * FROM Partida p "
+                + "WHERE p.id IN(SELECT id_partida FROM JogadorPartida WHERE id_jogador="+jogador+")";
         return selectPartidasPorQuery(sql);
     }
     

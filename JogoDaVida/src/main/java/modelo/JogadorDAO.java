@@ -32,7 +32,8 @@ public class JogadorDAO extends DAO {
             PartidaDAO partidaDAO = new PartidaDAO();
             Jogador jogador = jogadores.get(0);
             ArrayList<Partida> partidas = partidaDAO.selectPartidasAtivaPorJogador(jogador.getId());
-            jogador.setPartidasAtivas(partidas);
+            jogador.setPartidasAtivas(partidas != null ? partidas : new ArrayList<>());
+            return jogador;
         }
         return null;
     }

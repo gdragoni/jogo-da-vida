@@ -19,7 +19,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
+import modelo.Jogador;
 import modelo.JogadorDAO;
+import modelo.LoginRequestJson;
 
 /**
  * REST Web Service
@@ -40,8 +42,21 @@ public class JogadorResources {
     }
     
     @GET
-    public String teste() throws SQLException {
+    public String getTodosJogadores() throws SQLException, ClassNotFoundException {
         
-        return gson.toJson(dao.selectJogadorComNomeSenha("Gabriel Dragoni", "123"));
+        return gson.toJson(dao.selectJogadores());
+    }
+    
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("login")
+    public String postLogin(String json) throws SQLException, ClassNotFoundException {
+        LoginRequestJson loginRequestJson = gson.fromJson(json, LoginRequestJson.class);
+        Jogador jogador = dao.selectJogadorComNomeSenha(loginRequestJson.getNome(), loginRequestJson.getSenha());
+        if(jogador == null) {
+            return "Usuário ou senha incorreta!";
+        }
+        return gson.toJson(jogador);
     }
 }

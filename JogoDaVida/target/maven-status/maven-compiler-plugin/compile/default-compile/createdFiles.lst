@@ -5,4 +5,3 @@ com/dragoni/jogodavida/JAXRSConfiguration.class
 modelo/JogadorDetalhePartida.class
 modelo/Jogador.class
 modelo/JogadorDAO.class
-ws/JogadorResources.class
