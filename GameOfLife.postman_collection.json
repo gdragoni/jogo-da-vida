@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"nome\": \"Leo Leite\",\n\t\"senha\": \"123\"\n}",
+							"raw": "{\n\t\"nome\": \"Gabriel Dragoni\",\n\t\"senha\": \"123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -38,23 +38,156 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get Jogadores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/JogoDaVida/resources/jogador",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"JogoDaVida",
+								"resources",
+								"jogador"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Jogadores Por Partida",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/JogoDaVida/resources/jogador?id_partida=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"JogoDaVida",
+								"resources",
+								"jogador"
+							],
+							"query": [
+								{
+									"key": "id_partida",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "Partida",
-			"item": [],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "JogadorPartida",
-			"item": [],
+			"item": [
+				{
+					"name": "Criar Partida",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"jogadores\": [1, 2]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/JogoDaVida/resources/partida",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"JogoDaVida",
+								"resources",
+								"partida"
+							]
+						}
+					},
+					"response": []
+				}
+			],
 			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "HistoricoPartida",
-			"item": [],
+			"item": [
+				{
+					"name": "Get Historico Por Partida",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/JogoDaVida/resources/historico?id_partida=51",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"JogoDaVida",
+								"resources",
+								"historico"
+							],
+							"query": [
+								{
+									"key": "id_partida",
+									"value": "51"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Historico Por Partida e Jogador",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/JogoDaVida/resources/historico?id_partida=51&id_jogador=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"JogoDaVida",
+								"resources",
+								"historico"
+							],
+							"query": [
+								{
+									"key": "id_partida",
+									"value": "51"
+								},
+								{
+									"key": "id_jogador",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
 			"protocolProfileBehavior": {}
 		}
 	],
