@@ -17,6 +17,14 @@ public class HistoricoPartida {
     private Integer idJogador;
     private String descricao;
 
+    public HistoricoPartida(Integer id, Integer idPartida, Integer idJogador, String descricao, Date data) {
+        this.id = id;
+        this.idPartida = idPartida;
+        this.idJogador = idJogador;
+        this.descricao = descricao;
+        this.data = data;
+    }
+
     public Integer getId() {
         return id;
     }
