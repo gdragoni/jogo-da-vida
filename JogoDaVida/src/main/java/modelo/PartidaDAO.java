@@ -20,9 +20,36 @@ public class PartidaDAO extends DAO {
         super();
     }
     
+    public Partida insertPartida() throws SQLException {
+        
+        String sql = "INSERT INTO Partida (ativa) VALUES (true)";
+        PreparedStatement stm = con.prepareStatement(sql);
+        stm.execute();
+        
+        String getIDSQL = "SELECT MAX(id) FROM Partida";
+        PreparedStatement getIDStm = con.prepareStatement(getIDSQL);
+        ResultSet rs = getIDStm.executeQuery();
+        if(rs.next()) {
+            Partida partida = selectPartidasPorID(rs.getInt(1));
+            if(partida != null) {
+                return partida;
+            }
+        }
+        
+        return null;
+    }
+    
+    public Partida selectPartidasPorID(Integer id) throws SQLException {
+        String sql = "SELECT * FROM Partida WHERE id="+id;
+        ArrayList<Partida> list = selectPartidasPorQuery(sql);
+        if(list.size() > 0) {
+            return list.get(0);
+        }
+        return null;
+    }
+    
     public ArrayList<Partida> selectPartidasAtivaPorJogador(Integer jogador) throws SQLException {
-        String sql = "SELECT * FROM Partida p "
-                + "WHERE p.id IN(SELECT id_partida FROM JogadorPartida WHERE id_jogador="+jogador+")";
+        String sql = "SELECT * FROM Partida p WHERE p.id IN(SELECT id_partida FROM JogadorPartida WHERE id_jogador="+jogador+")";
         return selectPartidasPorQuery(sql);
     }
     

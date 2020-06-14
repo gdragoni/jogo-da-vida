@@ -11,7 +11,13 @@ package modelo;
  */
 public class Tabuleiro {
     
-    static AcaoTabuleiro acaoParaCasa(Integer nCasa) {
+    public static Integer rodarRoleta() {
+        double value = Math.random()*10+1;
+        int intValue = (int)value;
+        return intValue;
+    }
+    
+    public static AcaoTabuleiro acaoParaCasa(Integer nCasa) {
         switch(nCasa) {
             case 1:
             case 2:

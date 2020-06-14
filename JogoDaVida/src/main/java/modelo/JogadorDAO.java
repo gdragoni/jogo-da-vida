@@ -25,6 +25,11 @@ public class JogadorDAO extends DAO {
         return selectJogadoresPorQuery(sql);
     }
     
+    public ArrayList<Jogador> selectJogadoresComPartida(Integer pID) throws SQLException {
+        String sql = "SELECT * FROM Jogador j WHERE j.id IN(SELECT id_jogador FROM JogadorPartida WHERE id_partida="+pID+")";
+        return selectJogadoresPorQuery(sql);
+    }
+    
     public Jogador selectJogadorComNomeSenha(String nome, String senha) throws SQLException, ClassNotFoundException {
         String sql = "SELECT * FROM Jogador WHERE nome='"+nome+"' AND senha='"+senha+"'";
         ArrayList<Jogador> jogadores = selectJogadoresPorQuery(sql);
@@ -37,7 +42,7 @@ public class JogadorDAO extends DAO {
         }
         return null;
     }
-    
+        
     public ArrayList<Jogador> selectJogadoresPorQuery(String sql) throws SQLException {
         PreparedStatement stm = con.prepareStatement(sql);
         ResultSet rs = stm.executeQuery();
