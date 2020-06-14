@@ -63,4 +63,12 @@ public class PartidaDAO extends DAO {
         }
         return list;
     }
+    
+    public void updatePartida(Partida partida) throws SQLException {
+        String sql = "UPDATE Partida SET jogador_turno_atual="+(partida.getJogadorTurnoAtual() == null ? "null" : partida.getJogadorTurnoAtual())
+                + ", jogador_vencedor="+(partida.getJogadorVencedor()== null ? "null" : partida.getJogadorVencedor())
+                + ", ativa="+(partida.getAtiva() ? 1 : 0);
+        PreparedStatement stm = con.prepareStatement(sql);
+        stm.execute();
+    }
 }

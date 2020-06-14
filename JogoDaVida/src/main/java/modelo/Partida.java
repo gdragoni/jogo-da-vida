@@ -37,6 +37,18 @@ public class Partida {
         this.jogadores = jogadores;
     }
 
+    public void setAtiva(Boolean ativa) {
+        this.ativa = ativa;
+    }
+
+    public void setJogadorTurnoAtual(Integer jogadorTurnoAtual) {
+        this.jogadorTurnoAtual = jogadorTurnoAtual;
+    }
+
+    public void setJogadorVencedor(Integer jogadorVencedor) {
+        this.jogadorVencedor = jogadorVencedor;
+    }
+
     public ArrayList<Integer> getJogadores() {
         return jogadores;
     }

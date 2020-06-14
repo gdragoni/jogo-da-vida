@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
@@ -17,7 +18,15 @@ public class HistoricoPartidaDAO extends DAO {
         super();
     }
     
-    public void insertHistorico(Integer idPartida, String descricao) {
-        
+    public void insertHistorico(Integer idPartida, String descricao) throws SQLException {
+        String sql = "INSERT INTO HistoricoPartida (id_partida, descricao) VALUES ("+idPartida+", '"+descricao+"')";
+        PreparedStatement stm = con.prepareStatement(sql);
+        stm.execute();
+    }
+    
+    public void insertHistorico(Integer idPartida, String descricao, Integer jogador) throws SQLException {
+        String sql = "INSERT INTO HistoricoPartida (id_partida, descricao, id_jogador) VALUES ("+idPartida+", '"+descricao+"', "+jogador+")";
+        PreparedStatement stm = con.prepareStatement(sql);
+        stm.execute();
     }
 }
