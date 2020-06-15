@@ -13,11 +13,14 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import modelo.HistoricoPartidaDAO;
 import modelo.Jogador;
 import modelo.JogadorDAO;
+import modelo.JogadorPartida;
 import modelo.JogadorPartidaDAO;
 import modelo.Partida;
 import modelo.PartidaCriarRequestJson;
@@ -51,7 +54,7 @@ public class PartidaResources {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public String postLogin(String json) throws SQLException, ClassNotFoundException {
+    public String portNovaPartida(String json) throws SQLException, ClassNotFoundException {
         PartidaCriarRequestJson partidaCriarRequestJson = gson.fromJson(json, PartidaCriarRequestJson.class);
         Partida novaPartida = partidaDAO.insertPartida();
         jogadorPartidaDAO.insertJogadores(partidaCriarRequestJson.getJogadores(), novaPartida.getId());
@@ -74,5 +77,25 @@ public class PartidaResources {
         partidaDAO.updatePartida(novaPartida);
         
         return gson.toJson(novaPartida);
+    }
+    
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("{id_partida}/jogador/{id_jogador}")
+    public String criarNovaJogada(@PathParam("id_partida") Integer idPartida, @PathParam("id_jogador") Integer idJogador, String json) throws SQLException, ClassNotFoundException {        
+        JogadorPartida jogada = gson.fromJson(json, JogadorPartida.class);
+                       
+        JogadorPartida novaJogada = jogadorPartidaDAO.updateNovaJogada(
+                idJogador,
+                idPartida,
+                jogada.getPosicaoAtual(),
+                jogada.getSalarioAtual(),
+                jogada.getDinheiroAtual(),
+                jogada.getPromissoriaAtual(),
+                jogada.getAcaoNumeroAtual()
+        );
+        
+        return gson.toJson(novaJogada);
     }
 }

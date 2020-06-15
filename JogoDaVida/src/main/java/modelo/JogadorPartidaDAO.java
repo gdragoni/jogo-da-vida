@@ -6,6 +6,7 @@
 package modelo;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -29,7 +30,44 @@ public class JogadorPartidaDAO extends DAO {
             index++;
             sql+="("+j+", "+partidaID+", 0, 0, 10000, 0)";
         }
+        
         PreparedStatement stm = con.prepareStatement(sql);
         stm.execute();
+    }
+    
+    public JogadorPartida updateNovaJogada(Integer idJogador, Integer idPartida, Integer posicaoAtual, Double salarioAtual, Double dinheiroAtual, Double promissoriaAtual, Integer acaoNumeroAtual) throws SQLException {
+        String sql = "UPDATE JogadorPartida SET "
+                + "posicao_atual = " + posicaoAtual + ", "
+                + "salario_atual = " + salarioAtual + ", "
+                + "dinheiro_atual = " + dinheiroAtual + ", "
+                + "promissoria_atual = " + promissoriaAtual + ", "
+                + "acao_numero_atual = " + acaoNumeroAtual + " "
+                + "WHERE id_jogador = " + idJogador + " "
+                + "AND id_partida = " +  idPartida;     
+       
+        PreparedStatement stm = con.prepareStatement(sql);
+        stm.execute();
+        
+        String sqlReturn = "SELECT * FROM JogadorPartida WHERE id_jogador = " + + idJogador + " " + "AND id_partida = " +  idPartida;
+               
+        PreparedStatement stm2 = con.prepareStatement(sqlReturn);
+        ResultSet rs = stm2.executeQuery();
+        
+        if(rs != null && rs.next()) {
+            JogadorPartida novaJogada = new JogadorPartida(
+                rs.getInt("id"),
+                rs.getInt("id_jogador"),
+                rs.getInt("id_partida"),
+                rs.getInt("posicao_atual"),
+                rs.getDouble("salario_atual"),
+                rs.getDouble("dinheiro_atual"),
+                rs.getDouble("promissoria_atual"),
+                rs.getInt("acao_numero_atual")
+            );
+        
+            return novaJogada;
+        }
+                
+        return null;
     }
 }

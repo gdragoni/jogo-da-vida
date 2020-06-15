@@ -39,6 +39,7 @@ public class JogadorResources {
     }
     
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
     public String getTodosJogadores(@QueryParam("id_partida") Integer idPartida) throws SQLException, ClassNotFoundException {
         if(idPartida != null) {
             return gson.toJson(dao.selectJogadoresComPartida(idPartida));
