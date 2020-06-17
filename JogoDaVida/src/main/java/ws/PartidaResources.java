@@ -57,22 +57,29 @@ public class PartidaResources {
     public String portNovaPartida(String json) throws SQLException, ClassNotFoundException {
         PartidaCriarRequestJson partidaCriarRequestJson = gson.fromJson(json, PartidaCriarRequestJson.class);
         Partida novaPartida = partidaDAO.insertPartida();
-        jogadorPartidaDAO.insertJogadores(partidaCriarRequestJson.getJogadores(), novaPartida.getId());
+        jogadorPartidaDAO.insertJogadores(partidaCriarRequestJson.getJogadores(), novaPartida.getId(), 1);
         ArrayList<Jogador> jogadores = jogadorDAO.selectJogadoresComPartida(novaPartida.getId());
+        
         Jogador maiorNumeroJogador = null;
+        
         Integer maiorNumero = 0;
         for(Jogador j : jogadores) {
             Integer numero = Tabuleiro.rodarRoleta();
+            
             while(numero == maiorNumero) {
                 numero = Tabuleiro.rodarRoleta();
             }
+            
             if(numero > maiorNumero) {
                 maiorNumeroJogador = j;
                 maiorNumero = numero;
             }
-            historicoPartidaDAO.insertHistorico(novaPartida.getId(), "Decisão de turno inicial: "+j.getNome()+" rodou "+numero, j.getId());
+            
+            historicoPartidaDAO.insertHistorico(novaPartida.getId(), 1, j.getId());
         }
-        historicoPartidaDAO.insertHistorico(novaPartida.getId(), "Turno de "+maiorNumeroJogador.getNome());
+        
+        historicoPartidaDAO.insertHistorico(novaPartida.getId(), 2, maiorNumeroJogador.getId());
+        jogadorPartidaDAO.updateNovaJogada(maiorNumeroJogador.getId(), novaPartida.getId(), 0, 0.00, 10000.00, 0.00, 2);
         novaPartida.setJogadorTurnoAtual(maiorNumeroJogador.getId());
         partidaDAO.updatePartida(novaPartida);
         
@@ -93,8 +100,14 @@ public class PartidaResources {
                 jogada.getSalarioAtual(),
                 jogada.getDinheiroAtual(),
                 jogada.getPromissoriaAtual(),
-                jogada.getAcaoNumeroAtual()
+                jogada.getIdAcao()
         );
+        
+        historicoPartidaDAO.insertHistorico(idJogador, jogada.getIdAcao(), idPartida);
+
+        ArrayList<Jogador> jogadores = jogadorDAO.selectJogadoresComPartida(idPartida);
+        
+//        partidaDAO.setJogadorTurnoAtual();
         
         return gson.toJson(novaJogada);
     }

@@ -20,28 +20,37 @@ public class JogadorPartidaDAO extends DAO {
         super();
     }
     
-    public void insertJogadores(ArrayList<Integer> jogadores, Integer partidaID) throws SQLException {
-        String sql = "INSERT INTO JogadorPartida (id_jogador, id_partida, posicao_atual, salario_atual, dinheiro_atual, promissoria_atual) VALUES ";
+    public void insertJogadores(ArrayList<Integer> jogadores, Integer idPartida, Integer idAcao) throws SQLException {
+        String sql = "INSERT INTO JogadorPartida (id_jogador, id_partida, posicao_atual, salario_atual, dinheiro_atual, promissoria_atual, id_acao) VALUES ";
+        
         int index = 0;
         for(Integer j : jogadores) {
             if(index != 0) {
                 sql+=", ";
             }
             index++;
-            sql+="("+j+", "+partidaID+", 0, 0, 10000, 0)";
+            sql+="(" + j + ", " + idPartida + ", 0, 0.00, 10000.00, 0.00, " + idAcao +")";
         }
         
         PreparedStatement stm = con.prepareStatement(sql);
         stm.execute();
     }
     
-    public JogadorPartida updateNovaJogada(Integer idJogador, Integer idPartida, Integer posicaoAtual, Double salarioAtual, Double dinheiroAtual, Double promissoriaAtual, Integer acaoNumeroAtual) throws SQLException {
+    public JogadorPartida updateNovaJogada(
+            Integer idJogador,
+            Integer idPartida,
+            Integer posicaoAtual,
+            Double salarioAtual,
+            Double dinheiroAtual,
+            Double promissoriaAtual,
+            Integer idAcao
+    ) throws SQLException {
         String sql = "UPDATE JogadorPartida SET "
                 + "posicao_atual = " + posicaoAtual + ", "
                 + "salario_atual = " + salarioAtual + ", "
                 + "dinheiro_atual = " + dinheiroAtual + ", "
                 + "promissoria_atual = " + promissoriaAtual + ", "
-                + "acao_numero_atual = " + acaoNumeroAtual + " "
+                + "id_acao = " + idAcao + " "
                 + "WHERE id_jogador = " + idJogador + " "
                 + "AND id_partida = " +  idPartida;     
        
@@ -62,7 +71,7 @@ public class JogadorPartidaDAO extends DAO {
                 rs.getDouble("salario_atual"),
                 rs.getDouble("dinheiro_atual"),
                 rs.getDouble("promissoria_atual"),
-                rs.getInt("acao_numero_atual")
+                rs.getInt("id_acao")
             );
         
             return novaJogada;

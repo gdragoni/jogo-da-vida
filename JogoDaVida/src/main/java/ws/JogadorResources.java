@@ -44,6 +44,7 @@ public class JogadorResources {
         if(idPartida != null) {
             return gson.toJson(dao.selectJogadoresComPartida(idPartida));
         }
+        
         return gson.toJson(dao.selectJogadores());
     }
     
@@ -54,9 +55,11 @@ public class JogadorResources {
     public String postLogin(String json) throws SQLException, ClassNotFoundException {
         LoginRequestJson loginRequestJson = gson.fromJson(json, LoginRequestJson.class);
         Jogador jogador = dao.selectJogadorComNomeSenha(loginRequestJson.getNome(), loginRequestJson.getSenha());
+        
         if(jogador == null) {
             return "Usuário ou senha incorreta!";
         }
+        
         return gson.toJson(jogador);
     }
 }

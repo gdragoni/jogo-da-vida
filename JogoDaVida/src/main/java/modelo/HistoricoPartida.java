@@ -15,13 +15,14 @@ public class HistoricoPartida {
     private Integer id;
     private Integer idPartida;
     private Integer idJogador;
-    private String descricao;
+    private Integer idAcao;
+    private Date data;
 
-    public HistoricoPartida(Integer id, Integer idPartida, Integer idJogador, String descricao, Date data) {
+    public HistoricoPartida(Integer id, Integer idPartida, Integer idJogador, Integer idAcao, Date data) {
         this.id = id;
         this.idPartida = idPartida;
         this.idJogador = idJogador;
-        this.descricao = descricao;
+        this.idAcao = idAcao;
         this.data = data;
     }
 
@@ -37,12 +38,11 @@ public class HistoricoPartida {
         return idJogador;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public Integer getIdAcao() {
+        return idAcao;
     }
 
     public Date getData() {
         return data;
     }
-    private Date data;
 }

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4367b744-a0e9-49e0-9ae2-16d5ace58884",
+		"_postman_id": "9833f67a-1c28-4598-baa0-539f86be8cfd",
 		"name": "GameOfLife",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -91,6 +91,129 @@
 			"protocolProfileBehavior": {}
 		},
 		{
+			"name": "Acao",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/JogoDaVida/resources/acao",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"JogoDaVida",
+								"resources",
+								"acao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/JogoDaVida/resources/acao/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"JogoDaVida",
+								"resources",
+								"acao",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"descricao\": \"Matou a esposa\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/JogoDaVida/resources/acao",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"JogoDaVida",
+								"resources",
+								"acao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/JogoDaVida/resources/acao/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"JogoDaVida",
+								"resources",
+								"acao",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/JogoDaVida/resources/acao/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"JogoDaVida",
+								"resources",
+								"acao",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "Partida",
 			"item": [
 				{
@@ -118,6 +241,39 @@
 								"JogoDaVida",
 								"resources",
 								"partida"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Nova Jogada",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"posicaoAtual\": 3,\n\t\"salarioAtual\": 2000,\n\t\"dinheiroAtual\": 12000,\n\t\"promissoriaAtual\": 0,\n\t\"idAcao\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/JogoDaVida/resources/partida/132/jogador/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"JogoDaVida",
+								"resources",
+								"partida",
+								"132",
+								"jogador",
+								"1"
 							]
 						}
 					},

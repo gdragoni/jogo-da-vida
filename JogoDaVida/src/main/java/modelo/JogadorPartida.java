@@ -17,9 +17,9 @@ public class JogadorPartida {
     private Double salarioAtual;
     private Double dinheiroAtual;
     private Double promissoriaAtual;
-    private Integer acaoNumeroAtual;
+    private Integer idAcao;
     
-    public JogadorPartida(Integer id, Integer idJogador, Integer idPartida, Integer posicaoAtual, Double salarioAtual, Double dinheiroAtual, Double promissoriaAtual, Integer acaoNumeroAtual) {
+    public JogadorPartida(Integer id, Integer idJogador, Integer idPartida, Integer posicaoAtual, Double salarioAtual, Double dinheiroAtual, Double promissoriaAtual, Integer idAcao) {
         this.id = id;
         this.idJogador = idJogador;
         this.idPartida = idPartida;
@@ -27,7 +27,7 @@ public class JogadorPartida {
         this.salarioAtual = salarioAtual;
         this.dinheiroAtual = dinheiroAtual;
         this.promissoriaAtual = promissoriaAtual;
-        this.acaoNumeroAtual = acaoNumeroAtual;
+        this.idAcao = idAcao;
     }
     
 
@@ -59,7 +59,7 @@ public class JogadorPartida {
         return promissoriaAtual;
     }
 
-    public Integer getAcaoNumeroAtual() {
-        return acaoNumeroAtual;
+    public Integer getIdAcao() {
+        return idAcao;
     }
 }
