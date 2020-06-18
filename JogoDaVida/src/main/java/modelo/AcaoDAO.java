@@ -8,6 +8,7 @@ package modelo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -19,20 +20,13 @@ public class AcaoDAO extends DAO {
         super();
     }
     
-    public Acao selectAcao(Integer id) throws SQLException {
-        String sql = "SELECT * FROM Acao WHERE id = " + id;
-               
-        PreparedStatement stm = con.prepareStatement(sql);
-        ResultSet rs = stm.executeQuery();
+    public ArrayList<Acao> listAcao(String descricao) throws SQLException {
+        String sql = "SELECT * FROM Acao ";
         
-        Acao acao = new Acao(rs.getInt("id"), rs.getString("descricao"));
-        
-        return acao;
-    }
-    
-    public ArrayList<Acao> selectAcaoPorDescricao(String descricao) throws SQLException {
-        String sql = "SELECT * FROM Acao WHERE descricao LIKE " + "%" + descricao + "%";
-               
+        if (descricao != null) {
+            sql = sql + "WHERE descricao LIKE " + "'%" + descricao + "%'";
+        }
+                                          
         PreparedStatement stm = con.prepareStatement(sql);
         ResultSet rs = stm.executeQuery();
         
@@ -44,22 +38,59 @@ public class AcaoDAO extends DAO {
         return list;
     }
     
-    public void insertAcao(String descricao) throws SQLException {
-        String sql = "INSERT INTO Acao (descricao) VALUES(" + descricao + ")";
+    public Acao selectAcao(Integer id) throws SQLException {
+        String sql = "SELECT * FROM Acao WHERE id = " + id;
+               
+        PreparedStatement stm = con.prepareStatement(sql);
+        ResultSet rs = stm.executeQuery();
+        
+        if (rs.next()) {
+            Acao acao = new Acao(rs.getInt("id"), rs.getString("descricao"));
+        
+            return acao;
+        }
+        
+        return null;
+    }
+    
+    public Acao insertAcao(String descricao) throws SQLException {
+        String sql = "INSERT INTO Acao (descricao) VALUES('" + descricao + "')";
+               
+        PreparedStatement stm = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        stm.executeUpdate();
+        ResultSet rs = stm.getGeneratedKeys();
+        
+        if(rs.next() && rs != null){
+            Acao acao = this.selectAcao(rs.getInt(1));
+        
+            return acao;
+        }    
+
+        return null;
+    }
+    
+    public Acao updateAcao(Integer id, String descricao) throws SQLException {
+        String sql = "UPDATE Acao SET descricao = '" + descricao + "' WHERE id = " + id;
                
         PreparedStatement stm = con.prepareStatement(sql);
         stm.execute();
+        
+        String sqlReturn = "SELECT * FROM Acao WHERE id = " + id;
+            
+        PreparedStatement stm2 = con.prepareStatement(sqlReturn);
+        ResultSet rs = stm2.executeQuery();
+
+        if (rs.next()) {
+            Acao acao = new Acao(rs.getInt("id"), rs.getString("descricao"));
+
+            return acao;
+        }
+
+        return null;
     }
     
-    public void updateAcao(String descricao) throws SQLException {
-        String sql = "UPDATE Acao SET descricao = " + descricao;
-               
-        PreparedStatement stm = con.prepareStatement(sql);
-        stm.execute();
-    }
-    
-    public void deleteAcao(String descricao) throws SQLException {
-        String sql = "UPDATE Acao SET descricao = " + descricao;
+    public void deleteAcao(Integer id) throws SQLException {
+        String sql = "DELETE FROM Acao WHERE id = " + id;
                
         PreparedStatement stm = con.prepareStatement(sql);
         stm.execute();

@@ -20,21 +20,24 @@ public class HistoricoPartidaDAO extends DAO {
         super();
     }
     
-    public void insertHistorico(Integer idPartida, Integer idAcao, Integer jogador) throws SQLException {
-        String sql = "INSERT INTO HistoricoPartida (id_partida, id_acao, id_jogador) VALUES (" + idPartida + ", " + idAcao + ", " + jogador + ")";
+    public void insertHistorico(Integer idPartida, Integer idAcao, Integer idJogador) throws SQLException {
+        String sql = "INSERT INTO HistoricoPartida (id_partida, id_acao, id_jogador) VALUES (" + idPartida + ", " + idAcao + ", " + idJogador + ")";
         PreparedStatement stm = con.prepareStatement(sql);
         stm.execute();
-    }
-    
-    public ArrayList<HistoricoPartida> selectHistorico(Integer idPartida) throws SQLException {
-        String sql = "SELECT * FROM HistoricoPartida WHERE id_partida = " + idPartida;
-
-        return selectHistoricoPorSQL(sql);
-    }
+    }    
     
     public ArrayList<HistoricoPartida> selectHistorico(Integer idPartida, Integer idJogador) throws SQLException {
-        String sql = "SELECT * FROM HistoricoPartida WHERE id_partida = " + idPartida + " AND id_jogador = " + idJogador;
- 
+        String sql = "SELECT * FROM HistoricoPartida ";
+            if (idPartida != null) {
+                sql = sql + "WHERE id_partida = " + idPartida + " ";
+                
+                if (idJogador != null) {
+                    sql = sql + "AND id_jogador = " + idJogador;
+                }
+            } else {
+                sql = sql + "WHERE id_jogador = " + idJogador;
+            }
+
         return selectHistoricoPorSQL(sql);
     }
     

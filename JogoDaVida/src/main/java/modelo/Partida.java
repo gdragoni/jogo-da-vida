@@ -14,9 +14,10 @@ import java.util.ArrayList;
 public class Partida {
     private Integer id;
     private Boolean ativa;
-    private ArrayList<Integer> jogadores;
     private Integer jogadorTurnoAtual;
     private Integer jogadorVencedor;
+    private ArrayList<Integer> jogadores;
+    private ArrayList<Jogador> jogadoresPartida;
     
     public Partida(Integer id, Boolean ativa, Integer jogadorTurnoAtual, Integer jogadorVencedor) {
         this.id = id;
@@ -36,6 +37,10 @@ public class Partida {
     public void setJogadores(ArrayList<Integer> jogadores) {
         this.jogadores = jogadores;
     }
+    
+    public void setJogadoresPartida(ArrayList<Jogador> jogadoresPartida) {
+        this.jogadoresPartida = jogadoresPartida;
+    }
 
     public void setAtiva(Boolean ativa) {
         this.ativa = ativa;
@@ -52,6 +57,11 @@ public class Partida {
     public ArrayList<Integer> getJogadores() {
         return jogadores;
     }
+    
+     public ArrayList<Jogador> getJogadoresPartida() {
+        return jogadoresPartida;
+    }
+   
 
     public Integer getJogadorTurnoAtual() {
         return jogadorTurnoAtual;

@@ -2,9 +2,9 @@ modelo/PartidaDAO.class
 modelo/Partida.class
 modelo/LoginRequestJson.class
 com/dragoni/jogodavida/resources/JavaEE8Resource.class
+modelo/JogadorPartida.class
 modelo/DAO.class
 com/dragoni/jogodavida/JAXRSConfiguration.class
-modelo/JogadorDetalhePartida.class
 modelo/HistoricoPartida.class
 modelo/JogadorPartidaDAO.class
 ws/PartidaResources.class

@@ -37,11 +37,6 @@ public class HistoricoResources {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getTodosJogadores(@QueryParam("id_partida") Integer idPartida, @QueryParam("id_jogador") Integer idJogador) throws SQLException, ClassNotFoundException {
-        if(idPartida != null && idJogador != null) {
-            return gson.toJson(historicoPartidaDAO.selectHistorico(idPartida, idJogador));
-        } else if(idPartida != null) {
-            return gson.toJson(historicoPartidaDAO.selectHistorico(idPartida));
-        }
-        return "Erro, especifique a partida para visualizar o histórico";
+        return gson.toJson(historicoPartidaDAO.selectHistorico(idPartida, idJogador));
     }
 }

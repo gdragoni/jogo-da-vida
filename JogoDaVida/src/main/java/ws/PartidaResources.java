@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -51,35 +53,51 @@ public class PartidaResources {
         this.historicoPartidaDAO = new HistoricoPartidaDAO();
     }
     
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String listPartida() throws SQLException, ClassNotFoundException {
+        return gson.toJson(partidaDAO.listPartida());
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("{id_partida}")
+    public String selectPartida(@PathParam("id_partida") Integer idPartida) throws SQLException, ClassNotFoundException {
+        return gson.toJson(partidaDAO.selectPartida(idPartida));
+    }
+    
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public String portNovaPartida(String json) throws SQLException, ClassNotFoundException {
         PartidaCriarRequestJson partidaCriarRequestJson = gson.fromJson(json, PartidaCriarRequestJson.class);
         Partida novaPartida = partidaDAO.insertPartida();
-        jogadorPartidaDAO.insertJogadores(partidaCriarRequestJson.getJogadores(), novaPartida.getId(), 1);
+        jogadorPartidaDAO.insertJogadores(partidaCriarRequestJson.getJogadores(), novaPartida.getId(), 1, null);
         ArrayList<Jogador> jogadores = jogadorDAO.selectJogadoresComPartida(novaPartida.getId());
         
         Jogador maiorNumeroJogador = null;
-        
         Integer maiorNumero = 0;
+
         for(Jogador j : jogadores) {
             Integer numero = Tabuleiro.rodarRoleta();
             
             while(numero == maiorNumero) {
                 numero = Tabuleiro.rodarRoleta();
+                
+                jogadorPartidaDAO.updateNovaJogada(j.getId(), novaPartida.getId(), 0, 0.00, 10000.00, 0.00, 1, numero);
             }
             
             if(numero > maiorNumero) {
                 maiorNumeroJogador = j;
                 maiorNumero = numero;
+                
+                jogadorPartidaDAO.updateNovaJogada(j.getId(), novaPartida.getId(), 0, 0.00, 10000.00, 0.00, 2, numero);
             }
             
             historicoPartidaDAO.insertHistorico(novaPartida.getId(), 1, j.getId());
         }
         
         historicoPartidaDAO.insertHistorico(novaPartida.getId(), 2, maiorNumeroJogador.getId());
-        jogadorPartidaDAO.updateNovaJogada(maiorNumeroJogador.getId(), novaPartida.getId(), 0, 0.00, 10000.00, 0.00, 2);
         novaPartida.setJogadorTurnoAtual(maiorNumeroJogador.getId());
         partidaDAO.updatePartida(novaPartida);
         
@@ -100,15 +118,25 @@ public class PartidaResources {
                 jogada.getSalarioAtual(),
                 jogada.getDinheiroAtual(),
                 jogada.getPromissoriaAtual(),
-                jogada.getIdAcao()
+                jogada.getIdAcao(),
+                null
         );
         
-        historicoPartidaDAO.insertHistorico(idJogador, jogada.getIdAcao(), idPartida);
+        historicoPartidaDAO.insertHistorico(idPartida, jogada.getIdAcao(), idJogador);
 
-        ArrayList<Jogador> jogadores = jogadorDAO.selectJogadoresComPartida(idPartida);
+        Integer idProximoJogador = jogadorDAO.nextJogador(idJogador, idPartida, novaJogada.getPrimeiroNumeroRoleta());
         
-//        partidaDAO.setJogadorTurnoAtual();
+        Partida partida = partidaDAO.selectPartida(idPartida);
+        partida.setJogadorTurnoAtual(idProximoJogador);
+        partidaDAO.updatePartida(partida);
         
         return gson.toJson(novaJogada);
+    }
+    
+    @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("{id_partida}")
+    public void deletePartida(@PathParam("id_partida") Integer idPartida) throws SQLException, ClassNotFoundException {
+        partidaDAO.deletePartida(idPartida);
     }
 }
