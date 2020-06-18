@@ -4,7 +4,7 @@
 -- https://tableplus.com/
 --
 -- Database: jogodavida
--- Generation Time: 2020-06-17 09:31:49.3420
+-- Generation Time: 2020-06-18 00:52:19.4760
 -- -------------------------------------------------------------
 
 
@@ -23,7 +23,7 @@ CREATE TABLE `Acao` (
   `descricao` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `HistoricoPartida` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -38,14 +38,14 @@ CREATE TABLE `HistoricoPartida` (
   CONSTRAINT `HistoricoPartida_ibfk_1` FOREIGN KEY (`id_jogador`) REFERENCES `Jogador` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `HistoricoPartida_ibfk_2` FOREIGN KEY (`id_partida`) REFERENCES `Partida` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `HistoricoPartida_ibfk_3` FOREIGN KEY (`id_acao`) REFERENCES `Acao` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `Jogador` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(200) NOT NULL,
   `senha` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `JogadorPartida` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -56,6 +56,7 @@ CREATE TABLE `JogadorPartida` (
   `dinheiro_atual` float NOT NULL,
   `promissoria_atual` float NOT NULL,
   `id_acao` int(11) DEFAULT NULL,
+  `primeiro_numero_roleta` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_partida` (`id_partida`),
   KEY `id_jogador` (`id_jogador`) USING BTREE,
@@ -63,7 +64,7 @@ CREATE TABLE `JogadorPartida` (
   CONSTRAINT `JogadorPartida_ibfk_1` FOREIGN KEY (`id_jogador`) REFERENCES `Jogador` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `JogadorPartida_ibfk_2` FOREIGN KEY (`id_partida`) REFERENCES `Partida` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `JogadorPartida_ibfk_3` FOREIGN KEY (`id_acao`) REFERENCES `Acao` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `Partida` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -73,7 +74,7 @@ CREATE TABLE `Partida` (
   PRIMARY KEY (`id`),
   KEY `jogador_turno_atual` (`jogador_turno_atual`),
   KEY `jogador_vencedor` (`jogador_vencedor`)
-) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=143 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `Acao` (`id`, `descricao`) VALUES
 ('1', 'Decisão do turno inicial'),
@@ -84,64 +85,70 @@ INSERT INTO `Acao` (`id`, `descricao`) VALUES
 ('6', 'Andar 4 casas'),
 ('7', 'Andar 5 casas'),
 ('8', 'Andar 6 casas'),
-('9', 'Entrou na faculdade'),
-('10', 'Nova profissão Médico'),
-('11', 'Nova profissão Engenheiro'),
-('12', 'Nova profissão Enfermeiro'),
-('13', 'Nova profissão Quimico'),
-('14', 'Nova profissão Empresário'),
-('15', 'Nova profissão Dono de lava rápido'),
-('16', 'Nova profissão lixeiro'),
-('17', 'Ganhou um carro'),
-('18', 'Ganhou dinheiro'),
-('19', 'Ganhou uma casa'),
-('20', 'Ganhou um apartamento'),
-('21', 'Ganhou um cachorro'),
-('22', 'Ganhou um gato'),
-('23', 'Ganhou uma moto'),
-('24', 'Comprou uma casa'),
-('25', 'Comprou um carro'),
-('26', 'Comprou um apartamento'),
-('27', 'Comprou um cachorro'),
-('28', 'Comprou um gato'),
-('29', 'Comprou uma moto'),
-('30', 'Comprou um predio'),
-('31', 'Vendeu a casa'),
-('32', 'Vendeu o carro'),
-('33', 'Vendeu o cachorro'),
-('34', 'Vendeu o gato'),
-('35', 'Vendeu o apartamento'),
-('36', 'Vendeu a moto'),
-('37', 'Vendeu o predio'),
-('38', 'Casou'),
-('39', 'Foi na balada'),
-('40', 'Ganhou um herança'),
-('41', 'Morreu um parente'),
-('42', 'Nova profissão bancário'),
-('43', 'Comprou um banco'),
-('44', 'Nova profissão caixa'),
-('45', 'Nova profissão financeiro'),
-('46', 'Começou a namorar'),
-('47', 'Roubou dinheiro'),
-('48', 'Roubou o bens de um amigo'),
-('49', 'Robou a namorada do amigo'),
-('50', 'Matou um parente');
+('9', 'Andar 7 casas'),
+('10', 'Andar 8 casas'),
+('11', 'Andar 9 casas'),
+('12', 'Andar 10 casas'),
+('13', 'Entrou na faculdade'),
+('14', 'Nova profissão Médico'),
+('15', 'Nova profissão Engenheiro'),
+('16', 'Nova profissão Enfermeiro'),
+('17', 'Nova profissão Quimico'),
+('18', 'Nova profissão Empresário'),
+('19', 'Nova profissão Dono de lava rápido'),
+('20', 'Nova profissão lixeiro'),
+('21', 'Ganhou um carro'),
+('22', 'Ganhou dinheiro'),
+('23', 'Ganhou uma casa'),
+('24', 'Ganhou um apartamento'),
+('25', 'Ganhou um cachorro'),
+('26', 'Ganhou um gato'),
+('27', 'Ganhou uma moto'),
+('28', 'Comprou uma casa'),
+('29', 'Comprou um carro'),
+('30', 'Comprou um apartamento'),
+('31', 'Comprou um cachorro'),
+('32', 'Comprou um gato'),
+('33', 'Comprou uma moto'),
+('34', 'Comprou um predio'),
+('35', 'Vendeu a casa'),
+('36', 'Vendeu o carro'),
+('37', 'Vendeu o cachorro'),
+('38', 'Vendeu o gato'),
+('39', 'Vendeu o apartamento'),
+('40', 'Vendeu a moto'),
+('41', 'Vendeu o predio'),
+('42', 'Casou'),
+('43', 'Foi na balada'),
+('44', 'Ganhou um herança'),
+('45', 'Morreu um parente'),
+('46', 'Nova profissão bancário'),
+('47', 'Comprou um banco'),
+('48', 'Nova profissão caixa'),
+('49', 'Nova profissão financeiro'),
+('50', 'Começou a namorar'),
+('51', 'Roubou dinheiro'),
+('52', 'Roubou o bens de um amigo'),
+('53', 'Robou a namorada do amigo'),
+('54', 'Matou um parente'),
+('55', 'Matou a esposa');
 
 INSERT INTO `HistoricoPartida` (`id`, `id_partida`, `id_jogador`, `id_acao`, `data`) VALUES
-('4', '1', '1', '1', '2020-06-17 12:06:30'),
-('5', '1', '2', '1', '2020-06-17 12:06:30'),
-('6', '1', '1', '2', '2020-06-17 12:06:30');
+('41', '142', '1', '1', '2020-06-18 02:49:44'),
+('42', '142', '2', '1', '2020-06-18 02:49:44'),
+('43', '142', '2', '2', '2020-06-18 02:49:44');
 
 INSERT INTO `Jogador` (`id`, `nome`, `senha`) VALUES
-('1', 'Gabriel Dragoni', '123'),
-('2', 'Leo Leite', '123');
+('1', 'Gabriel Dragoni', 'abc'),
+('2', 'Leo Leite', '123'),
+('3', 'Marcos Dragoni', '123');
 
-INSERT INTO `JogadorPartida` (`id`, `id_jogador`, `id_partida`, `posicao_atual`, `salario_atual`, `dinheiro_atual`, `promissoria_atual`, `id_acao`) VALUES
-('3', '1', '1', '0', '0', '10000', '0', '2'),
-('4', '2', '1', '0', '0', '10000', '0', '1');
+INSERT INTO `JogadorPartida` (`id`, `id_jogador`, `id_partida`, `posicao_atual`, `salario_atual`, `dinheiro_atual`, `promissoria_atual`, `id_acao`, `primeiro_numero_roleta`) VALUES
+('17', '1', '142', '0', '0', '10000', '0', '2', '8'),
+('18', '2', '142', '0', '0', '10000', '0', '2', '9');
 
 INSERT INTO `Partida` (`id`, `jogador_turno_atual`, `jogador_vencedor`, `ativa`) VALUES
-('1', '1', '0', '1');
+('142', '1', '0', '1');
 
 
 

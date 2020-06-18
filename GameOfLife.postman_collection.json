@@ -9,6 +9,36 @@
 			"name": "Jogador",
 			"item": [
 				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\": \"Marcos Dragoni\",\n\t\"senha\": \"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/JogoDaVida/resources/jogador",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"JogoDaVida",
+								"resources",
+								"jogador"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Login",
 					"request": {
 						"method": "POST",
@@ -34,6 +64,28 @@
 								"resources",
 								"jogador",
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/JogoDaVida/resources/jogador/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"JogoDaVida",
+								"resources",
+								"jogador",
+								"1"
 							]
 						}
 					},
@@ -66,7 +118,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/JogoDaVida/resources/jogador?id_partida=1",
+							"raw": "http://localhost:8080/JogoDaVida/resources/jogador?id_partida=135",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -80,8 +132,61 @@
 							"query": [
 								{
 									"key": "id_partida",
-									"value": "1"
+									"value": "135"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update - Senha",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"senha\": \"abc\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/JogoDaVida/resources/jogador/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"JogoDaVida",
+								"resources",
+								"jogador",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/JogoDaVida/resources/jogador/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"JogoDaVida",
+								"resources",
+								"jogador",
+								"1"
 							]
 						}
 					},
@@ -109,6 +214,13 @@
 								"JogoDaVida",
 								"resources",
 								"acao"
+							],
+							"query": [
+								{
+									"key": "descricao",
+									"value": "Sua",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -120,7 +232,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/JogoDaVida/resources/acao/1",
+							"raw": "http://localhost:8080/JogoDaVida/resources/acao/50",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -130,7 +242,7 @@
 								"JogoDaVida",
 								"resources",
 								"acao",
-								"1"
+								"50"
 							]
 						}
 					},
@@ -171,8 +283,17 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"descricao\": \"Andar 1 casa\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8080/JogoDaVida/resources/acao/1",
+							"raw": "http://localhost:8080/JogoDaVida/resources/acao/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -182,7 +303,7 @@
 								"JogoDaVida",
 								"resources",
 								"acao",
-								"1"
+								"3"
 							]
 						}
 					},
@@ -194,7 +315,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/JogoDaVida/resources/acao/1",
+							"raw": "http://localhost:8080/JogoDaVida/resources/acao/62",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -204,7 +325,7 @@
 								"JogoDaVida",
 								"resources",
 								"acao",
-								"1"
+								"62"
 							]
 						}
 					},
@@ -217,7 +338,50 @@
 			"name": "Partida",
 			"item": [
 				{
-					"name": "Criar Partida",
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/JogoDaVida/resources/partida",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"JogoDaVida",
+								"resources",
+								"partida"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/JogoDaVida/resources/partida/142",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"JogoDaVida",
+								"resources",
+								"partida",
+								"142"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -247,7 +411,7 @@
 					"response": []
 				},
 				{
-					"name": "Nova Jogada",
+					"name": "Update - Nova Jogada",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -261,7 +425,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/JogoDaVida/resources/partida/132/jogador/1",
+							"raw": "http://localhost:8080/JogoDaVida/resources/partida/141/jogador/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -271,9 +435,31 @@
 								"JogoDaVida",
 								"resources",
 								"partida",
-								"132",
+								"141",
 								"jogador",
-								"1"
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/JogoDaVida/resources/partida/141",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"JogoDaVida",
+								"resources",
+								"partida",
+								"141"
 							]
 						}
 					},
@@ -291,7 +477,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/JogoDaVida/resources/historico?id_partida=51",
+							"raw": "http://localhost:8080/JogoDaVida/resources/historico?id_partida=142",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -305,7 +491,7 @@
 							"query": [
 								{
 									"key": "id_partida",
-									"value": "51"
+									"value": "142"
 								}
 							]
 						}
@@ -318,7 +504,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/JogoDaVida/resources/historico?id_partida=51&id_jogador=1",
+							"raw": "http://localhost:8080/JogoDaVida/resources/historico?id_partida=142&id_jogador=1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -332,11 +518,38 @@
 							"query": [
 								{
 									"key": "id_partida",
-									"value": "51"
+									"value": "142"
 								},
 								{
 									"key": "id_jogador",
 									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Historico Por Jogador",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/JogoDaVida/resources/historico?id_jogador=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"JogoDaVida",
+								"resources",
+								"historico"
+							],
+							"query": [
+								{
+									"key": "id_jogador",
+									"value": "2"
 								}
 							]
 						}
