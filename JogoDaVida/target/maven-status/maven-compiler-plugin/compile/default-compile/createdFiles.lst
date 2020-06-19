@@ -5,10 +5,13 @@ com/dragoni/jogodavida/resources/JavaEE8Resource.class
 modelo/JogadorPartida.class
 modelo/DAO.class
 com/dragoni/jogodavida/JAXRSConfiguration.class
+ws/AcaoResources.class
 modelo/HistoricoPartida.class
 modelo/JogadorPartidaDAO.class
 ws/PartidaResources.class
 modelo/Tabuleiro$AcaoTabuleiro.class
+modelo/AcaoDAO.class
+modelo/Acao.class
 modelo/HistoricoPartidaDAO.class
 modelo/PartidaCriarRequestJson.class
 modelo/Jogador.class

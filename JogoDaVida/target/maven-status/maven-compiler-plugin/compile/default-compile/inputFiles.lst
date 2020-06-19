@@ -1,7 +1,9 @@
 /Users/leonardoleite/Documents/University/Sistemas Distribuidos/jogo-da-vida/JogoDaVida/src/main/java/modelo/DAO.java
+/Users/leonardoleite/Documents/University/Sistemas Distribuidos/jogo-da-vida/JogoDaVida/src/main/java/modelo/AcaoDAO.java
 /Users/leonardoleite/Documents/University/Sistemas Distribuidos/jogo-da-vida/JogoDaVida/src/main/java/ws/PartidaResources.java
 /Users/leonardoleite/Documents/University/Sistemas Distribuidos/jogo-da-vida/JogoDaVida/src/main/java/modelo/PartidaDAO.java
 /Users/leonardoleite/Documents/University/Sistemas Distribuidos/jogo-da-vida/JogoDaVida/src/main/java/modelo/LoginRequestJson.java
+/Users/leonardoleite/Documents/University/Sistemas Distribuidos/jogo-da-vida/JogoDaVida/src/main/java/modelo/Acao.java
 /Users/leonardoleite/Documents/University/Sistemas Distribuidos/jogo-da-vida/JogoDaVida/src/main/java/modelo/HistoricoPartidaDAO.java
 /Users/leonardoleite/Documents/University/Sistemas Distribuidos/jogo-da-vida/JogoDaVida/src/main/java/com/dragoni/jogodavida/JAXRSConfiguration.java
 /Users/leonardoleite/Documents/University/Sistemas Distribuidos/jogo-da-vida/JogoDaVida/src/main/java/modelo/HistoricoPartida.java
@@ -14,4 +16,5 @@
 /Users/leonardoleite/Documents/University/Sistemas Distribuidos/jogo-da-vida/JogoDaVida/src/main/java/modelo/JogadorPartidaDAO.java
 /Users/leonardoleite/Documents/University/Sistemas Distribuidos/jogo-da-vida/JogoDaVida/src/main/java/ws/JogadorResources.java
 /Users/leonardoleite/Documents/University/Sistemas Distribuidos/jogo-da-vida/JogoDaVida/src/main/java/com/dragoni/jogodavida/resources/JavaEE8Resource.java
+/Users/leonardoleite/Documents/University/Sistemas Distribuidos/jogo-da-vida/JogoDaVida/src/main/java/ws/AcaoResources.java
 /Users/leonardoleite/Documents/University/Sistemas Distribuidos/jogo-da-vida/JogoDaVida/src/main/java/modelo/PartidaCriarRequestJson.java
